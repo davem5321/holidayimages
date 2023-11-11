@@ -19,23 +19,17 @@
         var query = 'Create a holiday celebration image using the following instructions. \r\nTone:' + firstValue + '\r\nHoliday:' + secondValue + '\r\nContext:' + Value3 + '\r\nColor Scheme:' + Value4 + '\r\nArtistic Style:' + Value5 + '\r\nTexture and Pattern:' + Value6 + '\r\nLighting and Shadows:' + Value7 + '\r\nPerspective: ' + Value8;
 
         // Redirect to Bing with the concatenated query
-        window.open('https://www.bing.com/search?q=' + encodeURIComponent(query));
-    }
-
-    function checkForUndefined() {
-        var firstValue = document.getElementById('options1').value;
-        if(firstValue==undefined) {
+          if(firstValue=="undefined") {
             alert("Please choose a tone from the dropdown options");
         } else {
-            submitToBing()
+            window.open('https://www.bing.com/search?q=' + encodeURIComponent(query));
         }
-        
     }
     </script>
 </head>
 <body>
 
-<form onsubmit="event.preventDefault(); checkForUndefined();">
+<form onsubmit="event.preventDefault(); submitToBing() ">
 <div>
     <label for="options1">Choose a Tone:
     <input list="options1" name="q1" /></label>
