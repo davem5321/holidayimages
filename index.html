@@ -19,7 +19,7 @@
         var query = 'Create a holiday celebration image using the following instructions. \r\nTone:' + firstValue + '\r\nHoliday:' + secondValue + '\r\nContext:' + Value3 + '\r\nColor Scheme:' + Value4 + '\r\nArtistic Style:' + Value5 + '\r\nTexture and Pattern:' + Value6 + '\r\nLighting and Shadows:' + Value7 + '\r\nPerspective: ' + Value8;
 
         // Redirect to Bing with the concatenated query
-        if(firstValue==undefined) {
+        if(firstValue=="") {
             // alert("Please choose a tone from the dropdown options");
             alert(firstValue);
         } else {
