@@ -8,12 +8,12 @@
         // Get the selected values from both dropdowns
         var firstValue = document.getElementById('textoptions1').value;
         var secondValue = document.getElementById('textoptions2').value;
-        var Value3 = document.getElementById('options3').value;
-        var Value4 = document.getElementById('options4').value;
-        var Value5 = document.getElementById('options5').value;
-        var Value6 = document.getElementById('options6').value;
-        var Value7 = document.getElementById('options7').value;
-        var Value8 = document.getElementById('options8').value;
+        var Value3 = document.getElementById('textoptions3').value;
+        var Value4 = document.getElementById('textoptions4').value;
+        var Value5 = document.getElementById('textoptions5').value;
+        var Value6 = document.getElementById('textoptions6').value;
+        var Value7 = document.getElementById('textoptions7').value;
+        var Value8 = document.getElementById('textoptions8').value;
 
         // Concatenate the values
         var query = 'Create a holiday celebration image using the following instructions. \r\nTone:' + firstValue + '\r\nHoliday:' + secondValue + '\r\nContext:' + Value3 + '\r\nColor Scheme:' + Value4 + '\r\nArtistic Style:' + Value5 + '\r\nTexture and Pattern:' + Value6 + '\r\nLighting and Shadows:' + Value7 + '\r\nPerspective: ' + Value8;
@@ -21,10 +21,8 @@
         // Redirect to Bing with the concatenated query
         // if(firstValue=="test") {
             // alert("Please choose a tone from the dropdown options");
-            alert(secondValue + " test6 " + firstValue);
-            console.log(firstValue);
        //  } else {
-            // window.open('https://www.bing.com/search?q=' + encodeURIComponent(query));
+            window.open('https://www.bing.com/search?q=' + encodeURIComponent(query));
        //  }
     }
     </script>
@@ -60,182 +58,187 @@
 <div>
 <div>
     <label for="options2">Choose a Holiday:
-    <input list="options2" name="q2" id="textoptions2" /></label>
+    <input list="options2" name="q2" id="textoptions2" placeholder="Christmas" /></label>
     <datalist id="options2">
-        <option value=" Christmas "> Christmas </option>
-        <option value=" Hanukkah "> Hanukkah </option>
-        <option value=" Kwanzaa "> Kwanzaa </option>
-        <option value=" Winter Wonderland "> Winter Wonderland </option>
-        <option value=" New Year's Eve "> New Year's Eve </option>
-        <option value=" Festivus "> Festivus </option>
-        <option value=" Yule "> Yule </option>
-        <option value=" Boxing Day "> Boxing Day </option>
-        <option value=" Epiphany "> Epiphany </option>
-        <option value=" Three Kings Day "> Three Kings Day </option>
-        <option value=" Advent "> Advent </option>
-        <option value=" Winter Solstice "> Winter Solstice </option>
-        <option value=" Nativity Scene "> Nativity Scene </option>
-        <option value=" Santa Claus "> Santa Claus </option>
-        <option value=" Reindeer "> Reindeer </option>
-        <option value=" Snowmen "> Snowmen </option>
-        <option value=" Gingerbread Houses "> Gingerbread Houses </option>
-        <option value=" Candy Canes "> Candy Canes </option>
-        <option value=" Christmas Trees "> Christmas Trees </option>
-        <option value=" Holiday Lights"> Holiday Lights</option>
+        <option value=" Christmas "> 
+        <option value=" Hanukkah ">
+        <option value=" Kwanzaa ">
+        <option value=" Winter Wonderland ">
+        <option value=" New Year's Eve ">
+        <option value=" Festivus ">
+        <option value=" Yule ">
+        <option value=" Boxing Day ">
+        <option value=" Epiphany ">
+        <option value=" Three Kings Day ">
+        <option value=" Advent ">
+        <option value=" Winter Solstice ">
+        <option value=" Nativity Scene ">
+        <option value=" Santa Claus ">
+        <option value=" Reindeer ">
+        <option value=" Snowmen ">
+        <option value=" Gingerbread Houses ">
+        <option value=" Candy Canes ">
+        <option value=" Christmas Trees ">
+        <option value=" Holiday Lights">
     </datalist>
 <div>
 <div>
-    <label for="options3">Choose a Context:</label>
-    <select name="q2" id="options3">
-        <option value=" A cozy cabin in the snow "> A cozy cabin in the snow </option>
-        <option value=" A family gathered around a fireplace "> A family gathered around a fireplace </option>
-        <option value=" A winter wonderland scene with snowflakes falling "> A winter wonderland scene with snowflakes falling </option>
-        <option value=" A Christmas tree decorated with ornaments and lights "> A Christmas tree decorated with ornaments and lights </option>
-        <option value=" A menorah with lit candles "> A menorah with lit candles </option>
-        <option value=" A Kwanzaa table with candles and symbols "> A Kwanzaa table with candles and symbols </option>
-        <option value=" A group of carolers singing in the snow "> A group of carolers singing in the snow </option>
-        <option value=" A nativity scene with the three wise men "> A nativity scene with the three wise men </option>
-        <option value=" A Santa Claus delivering presents "> A Santa Claus delivering presents </option>
-        <option value=" A reindeer pulling a sleigh "> A reindeer pulling a sleigh </option>
-        <option value=" A snowman with a top hat and scarf "> A snowman with a top hat and scarf </option>
-        <option value=" A gingerbread house with candy decorations "> A gingerbread house with candy decorations </option>
-        <option value=" A holiday feast with family and friends "> A holiday feast with family and friends </option>
-        <option value=" A Christmas market with vendors and lights "> A Christmas market with vendors and lights </option>
-        <option value=" A holiday parade with floats and marching bands "> A holiday parade with floats and marching bands </option>
-        <option value=" A holiday party with dancing and music "> A holiday party with dancing and music </option>
-        <option value=" A holiday baking scene with cookies and treats "> A holiday baking scene with cookies and treats </option>
-        <option value=" A holiday shopping scene with bags and gifts "> A holiday shopping scene with bags and gifts </option>
-        <option value=" A winter sports scene with skiing or ice skating "> A winter sports scene with skiing or ice skating </option>
-        <option value=" A holiday movie night with popcorn and hot cocoa "> A holiday movie night with popcorn and hot cocoa </option>
-        <option value=" A holiday card-making scene with glitter and markers "> A holiday card-making scene with glitter and markers </option>
-        <option value=" A holiday craft-making scene with ornaments and decorations "> A holiday craft-making scene with ornaments and decorations </option>
-        <option value=" A holiday charity event with volunteers and donations "> A holiday charity event with volunteers and donations </option>
-        <option value=" A holiday travel scene with suitcases and planes "> A holiday travel scene with suitcases and planes </option>
-        <option value=" A holiday beach scene with palm trees and sand "> A holiday beach scene with palm trees and sand </option>
-        <option value=" A holiday camping scene with a campfire and s'mores "> A holiday camping scene with a campfire and s'mores </option>
-        <option value=" A holiday road trip scene with a car and map "> A holiday road trip scene with a car and map </option>
-        <option value=" A holiday train ride scene with a conductor and passengers "> A holiday train ride scene with a conductor and passengers </option>
-        <option value=" A holiday cruise scene with a ship and ocean "> A holiday cruise scene with a ship and ocean </option>
-        <option value=" A holiday spa scene with relaxation and pampering "> A holiday spa scene with relaxation and pampering </option>
-    </select>
+    <label for="options3">Choose a Context:
+    <input list="options3" name="q3" id="textoptions3" /></label>
+    <datalist id="options3">
+        <option value=" A cozy cabin in the snow "> 
+        <option value=" A family gathered around a fireplace "> 
+        <option value=" A winter wonderland scene with snowflakes falling ">
+        <option value=" A Christmas tree decorated with ornaments and lights ">
+        <option value=" A menorah with lit candles ">
+        <option value=" A Kwanzaa table with candles and symbols ">
+        <option value=" A group of carolers singing in the snow ">
+        <option value=" A nativity scene with the three wise men ">
+        <option value=" A Santa Claus delivering presents ">
+        <option value=" A reindeer pulling a sleigh ">
+        <option value=" A snowman with a top hat and scarf ">
+        <option value=" A gingerbread house with candy decorations ">
+        <option value=" A holiday feast with family and friends ">
+        <option value=" A Christmas market with vendors and lights ">
+        <option value=" A holiday parade with floats and marching bands ">
+        <option value=" A holiday party with dancing and music ">
+        <option value=" A holiday baking scene with cookies and treats ">
+        <option value=" A holiday shopping scene with bags and gifts ">
+        <option value=" A winter sports scene with skiing or ice skating ">
+        <option value=" A holiday movie night with popcorn and hot cocoa ">
+        <option value=" A holiday card-making scene with glitter and markers ">
+        <option value=" A holiday craft-making scene with ornaments and decorations ">
+        <option value=" A holiday charity event with volunteers and donations ">
+        <option value=" A holiday travel scene with suitcases and planes ">
+        <option value=" A holiday beach scene with palm trees and sand ">
+        <option value=" A holiday camping scene with a campfire and s'mores ">
+        <option value=" A holiday road trip scene with a car and map ">
+        <option value=" A holiday train ride scene with a conductor and passengers ">
+        <option value=" A holiday cruise scene with a ship and ocean ">
+        <option value=" A holiday spa scene with relaxation and pampering ">
+    </datalist>
 <div>
 <div>
-    <label for="options4">Choose a Color Scheme:</label>
-    <select name="q2" id="options4">
-        <option value=" Red and green">Red and green</option>
-        <option value=" Gold and silver"> Gold and silver</option>
-        <option value=" Blue and silver"> Blue and silver</option>
-        <option value=" White and gold"> White and gold</option>
-        <option value=" Red and gold"> Red and gold</option>
-        <option value=" Green and gold"> Green and gold</option>
-        <option value=" Blue and gold"> Blue and gold</option>
-        <option value=" White and silver"> White and silver</option>
-        <option value=" Red and white"> Red and white</option>
-        <option value=" Green and white"> Green and white</option>
-        <option value=" Blue and white"> Blue and white</option>
-        <option value=" Red and silver"> Red and silver</option>
-        <option value=" Green and silver"> Green and silver</option>
-        <option value=" Blue and green"> Blue and green</option>
-        <option value=" Purple and gold"> Purple and gold</option>
-        <option value=" Pink and gold"> Pink and gold</option>
-        <option value=" Red and black"> Red and black</option>
-        <option value=" Green and black"> Green and black</option>
-        <option value=" Blue and black"> Blue and black</option>
-        <option value=" White and black"> White and black</option>
-    </select>
+    <label for="options4">Choose a Color Scheme:
+    <input list="options4" name="q4" id="textoptions4" placeholder="Red and green" /></label>
+    <datalist id="options4">
+        <option value=" Red and green">
+        <option value=" Gold and silver">
+        <option value=" Blue and silver">
+        <option value=" White and gold">
+        <option value=" Red and gold">
+        <option value=" Green and gold">
+        <option value=" Blue and gold">
+        <option value=" White and silver">
+        <option value=" Red and white">
+        <option value=" Green and white">
+        <option value=" Blue and white">
+        <option value=" Red and silver">
+        <option value=" Green and silver">
+        <option value=" Blue and green">
+        <option value=" Purple and gold">
+        <option value=" Pink and gold">
+        <option value=" Red and black">
+        <option value=" Green and black">
+        <option value=" Blue and black">
+        <option value=" White and black">
+    </datalist>
 <div>
 <div>
-    <label for="options5">Choose an Artistic Style:</label>
-    <select name="q2" id="options5">
-        <option value=" Watercolor"> Watercolor</option>
-        <option value=" Oil painting"> Oil painting</option>
-        <option value=" Sketch"> Sketch</option>
-        <option value=" Charcoal drawing"> Charcoal drawing</option>
-        <option value=" Ink drawing"> Ink drawing</option>
-        <option value=" Pointillism"> Pointillism</option>
-        <option value=" Impressionism"> Impressionism</option>
-        <option value=" Expressionism"> Expressionism</option>
-        <option value=" Realism"> Realism</option>
-        <option value=" Surrealism"> Surrealism</option>
-        <option value=" Cubism"> Cubism</option>
-        <option value=" Pop art"> Pop art</option>
-        <option value=" Abstract"> Abstract</option>
-        <option value=" Minimalism"> Minimalism</option>
-        <option value=" Art deco"> Art deco</option>
-        <option value=" Art nouveau"> Art nouveau</option>
-        <option value=" Fauvism"> Fauvism</option>
-        <option value=" Post-impressionism"> Post-impressionism</option>
-        <option value=" Neo-expressionism"> Neo-expressionism</option>
-        <option value=" Dadaism"> Dadaism</option>
-    </select>
+    <label for="options5">Choose an Artistic Style:
+    <input list="options5" name="q5" id="textoptions5" placeholder="Watercolor" /></label>
+    <datalist id="options5">
+        <option value=" Watercolor">
+        <option value=" Oil painting">
+        <option value=" Sketch">
+        <option value=" Charcoal drawing">
+        <option value=" Ink drawing">
+        <option value=" Pointillism">
+        <option value=" Impressionism">
+        <option value=" Expressionism">
+        <option value=" Realism">
+        <option value=" Surrealism">
+        <option value=" Cubism">
+        <option value=" Pop art">
+        <option value=" Abstract">
+        <option value=" Minimalism">
+        <option value=" Art deco">
+        <option value=" Art nouveau">
+        <option value=" Fauvism">
+        <option value=" Post-impressionism">
+        <option value=" Neo-expressionism">
+        <option value=" Dadaism">
+    </datalist>
 <div>
 <div>
-    <label for="options6">Choose a Texture and Pattern:</label>
-    <select name="q2" id="options6">
-        <option value=" Snowflakes">Snowflakes</option>
-        <option value=" Candy canes"> Candy canes</option>
-        <option value=" Holly leaves"> Holly leaves</option>
-        <option value=" Reindeer antlers"> Reindeer antlers</option>
-        <option value=" Christmas lights"> Christmas lights</option>
-        <option value=" Pine needles"> Pine needles</option>
-        <option value=" Gift wrapping paper"> Gift wrapping paper</option>
-        <option value=" Gingerbread cookies"> Gingerbread cookies</option>
-        <option value=" Ornaments"> Ornaments</option>
-        <option value=" Wreaths"> Wreaths</option>
-        <option value=" Snow-covered trees"> Snow-covered trees</option>
-        <option value=" Icicles"> Icicles</option>
-        <option value=" Snowmen"> Snowmen</option>
-        <option value=" Stars"> Stars</option>
-        <option value=" Stripes"> Stripes</option>
-        <option value=" Plaid"> Plaid</option>
-        <option value=" Polka dots"> Polka dots</option>
-        <option value=" Chevron"> Chevron</option>
-        <option value=" Tartan"> Tartan</option>
-        <option value=" Damask"> Damask</option>
-    </select>
+    <label for="options6">Choose a Texture and Pattern:
+    <input list="options6" name="q6" id="textoptions6" placeholder="Snowflakes" /></label>
+    <datalist id="options6">
+        <option value=" Snowflakes">
+        <option value=" Candy canes">
+        <option value=" Holly leaves">
+        <option value=" Reindeer antlers">
+        <option value=" Christmas lights">
+        <option value=" Pine needles">
+        <option value=" Gift wrapping paper">
+        <option value=" Gingerbread cookies">
+        <option value=" Ornaments">
+        <option value=" Wreaths">
+        <option value=" Snow-covered trees">
+        <option value=" Icicles">
+        <option value=" Snowmen">
+        <option value=" Stars">
+        <option value=" Stripes">
+        <option value=" Plaid">
+        <option value=" Polka dots">
+        <option value=" Chevron">
+        <option value=" Tartan">
+        <option value=" Damask">
+    </datalist>
 <div>
 <div>
-    <label for="options7">Choose a setting for Lighting and Shadows:</label>
-    <select name="q2" id="options7">
-        <option value=" Warm, golden light shining on a cozy fireplace scene">Warm, golden light shining on a cozy fireplace scene</option>
-        <option value=" Soft, diffused light illuminating a snowy landscape"> Soft, diffused light illuminating a snowy landscape</option>
-        <option value=" Bright, colorful lights on a Christmas tree"> Bright, colorful lights on a Christmas tree</option>
-        <option value=" Harsh, dramatic shadows on a dark winter night"> Harsh, dramatic shadows on a dark winter night</option>
-        <option value=" Glowing candles casting flickering shadows on a table setting"> Glowing candles casting flickering shadows on a table setting</option>
-        <option value=" Twinkling lights reflecting in a snowy windowpane"> Twinkling lights reflecting in a snowy windowpane</option>
-        <option value=" Soft, warm light shining on a family gathered around a menorah"> Soft, warm light shining on a family gathered around a menorah</option>
-        <option value=" Bright, sunny light illuminating a winter wonderland scene"> Bright, sunny light illuminating a winter wonderland scene</option>
-        <option value=" Muted, cool light on a frosty morning"> Muted, cool light on a frosty morning</option>
-        <option value=" Shadows of reindeer and sleighs on a snowy rooftop"> Shadows of reindeer and sleighs on a snowy rooftop</option>
-        <option value=" Glowing lanterns casting warm light on a winter village scene"> Glowing lanterns casting warm light on a winter village scene</option>
-        <option value=" Bright, colorful lights on a Hanukkah menorah"> Bright, colorful lights on a Hanukkah menorah</option>
-        <option value=" Harsh, directional light on a snowy mountain landscape"> Harsh, directional light on a snowy mountain landscape</option>
-        <option value=" Soft, warm light on a family opening presents around a Christmas tree"> Soft, warm light on a family opening presents around a Christmas tree</option>
-        <option value=" Shadows of snowflakes falling on a winter forest scene"> Shadows of snowflakes falling on a winter forest scene</option>
-        <option value=" Glowing stars casting soft light on a nativity scene"> Glowing stars casting soft light on a nativity scene</option>
-        <option value=" Bright, colorful lights on a holiday parade float"> Bright, colorful lights on a holiday parade float</option>
-        <option value=" Harsh, dramatic shadows on a snowy city street"> Harsh, dramatic shadows on a snowy city street</option>
-        <option value=" Soft, warm light on a family enjoying a holiday meal together"> Soft, warm light on a family enjoying a holiday meal together</option>
-        <option value=" Shadows of holiday decorations on a snowy front porch"> Shadows of holiday decorations on a snowy front porch</option>
-
-    </select>
+    <label for="options7">Choose a setting for Lighting and Shadows:
+    <input list="options7" name="q7" id="textoptions7" placeholder="Warm, golden light shining on a cozy fireplace scene" /></label>
+    <datalist id="options7">
+        <option value=" Warm, golden light shining on a cozy fireplace scene">
+        <option value=" Soft, diffused light illuminating a snowy landscape">
+        <option value=" Bright, colorful lights on a Christmas tree">
+        <option value=" Harsh, dramatic shadows on a dark winter night">
+        <option value=" Glowing candles casting flickering shadows on a table setting">
+        <option value=" Twinkling lights reflecting in a snowy windowpane">
+        <option value=" Soft, warm light shining on a family gathered around a menorah">
+        <option value=" Bright, sunny light illuminating a winter wonderland scene">
+        <option value=" Muted, cool light on a frosty morning">
+        <option value=" Shadows of reindeer and sleighs on a snowy rooftop">
+        <option value=" Glowing lanterns casting warm light on a winter village scene">
+        <option value=" Bright, colorful lights on a Hanukkah menorah">
+        <option value=" Harsh, directional light on a snowy mountain landscape">
+        <option value=" Soft, warm light on a family opening presents around a Christmas tree">
+        <option value=" Shadows of snowflakes falling on a winter forest scene">
+        <option value=" Glowing stars casting soft light on a nativity scene">
+        <option value=" Bright, colorful lights on a holiday parade float">
+        <option value=" Harsh, dramatic shadows on a snowy city street">
+        <option value=" Soft, warm light on a family enjoying a holiday meal together">
+        <option value=" Shadows of holiday decorations on a snowy front porch">
+    </datalist>
 <div>
 <div>
-    <label for="options8">Choose a Perspective:</label>
-    <select name="q2" id="options8">
-        <option value="Head-On View">Head-On View</option>
-        <option value="Bird's-Eye View">Bird's-Eye View</option>
-        <option value="Worm's-Eye View">Worm's-Eye View</option>
-        <option value="Three-Quarter View">Three-Quarter View</option>
-        <option value="Close-Up View">Close-Up View</option>
-        <option value="Panoramic View">Panoramic View</option>
-        <option value="View from inside a snow globe">View from inside a snow globe</option>
-        <option value="View from a sled going down a hill">View from a sled going down a hill</option>
-        <option value="Vignette View">Vignette View</option>
-        <option value="Eye-Level View">Eye-Level View</option>
-        <option value="Over-the-Shoulder View">Over-the-Shoulder View</option>
-        <option value="Reflection View">Reflection View</option>
-    </select>
+    <label for="options8">Choose a Perspective:
+    <input list="options8" name="q8" id="textoptions8" placeholder="Head-On View" /></label>
+    <datalist id="options8">
+        <option value="Head-On View">
+        <option value="Bird's-Eye View">
+        <option value="Worm's-Eye View">
+        <option value="Three-Quarter View">
+        <option value="Close-Up View">
+        <option value="Panoramic View">
+        <option value="View from inside a snow globe">
+        <option value="View from a sled going down a hill">
+        <option value="Vignette View">
+        <option value="Eye-Level View">
+        <option value="Over-the-Shoulder View">
+        <option value="Reflection View">
+    </datalist>
 <div>
 </br>
     <input type="submit" value="Bing">
