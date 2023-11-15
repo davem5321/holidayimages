@@ -6,7 +6,7 @@
     <script>
     function submitToBing() {
         // Get the selected values from both dropdowns
-        var firstValue = document.getElementById('options1').value;
+        var firstValue = document.getElementById('options1').dataset.value;
         var secondValue = document.getElementById('options2').value;
         var Value3 = document.getElementById('options3').value;
         var Value4 = document.getElementById('options4').value;
@@ -35,7 +35,7 @@
     <label for="options1">Choose a Tone:
     <input list="options1" name="q1" /></label>
     <datalist id="options1">
-        <option value=" Warm and cheerful ">Warm and cheerful</option>
+        <option value=" Warm and cheerful " name="Warm and cheerful">
         <option value=" Playful and whimsical "> 
         <option value=" Elegant and sophisticated "> 
         <option value=" Nostalgic and sentimental "> 
