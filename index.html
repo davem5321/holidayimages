@@ -6,7 +6,7 @@
     <script>
     function submitToBing() {
         // Get the selected values from both dropdowns
-        var firstValue = document.getElementById('textoptions1');
+        var firstValue = document.getElementById('textoptions1').value;
         var secondValue = document.getElementById('options2').value;
         var Value3 = document.getElementById('options3').value;
         var Value4 = document.getElementById('options4').value;
@@ -21,7 +21,7 @@
         // Redirect to Bing with the concatenated query
         // if(firstValue=="test") {
             // alert("Please choose a tone from the dropdown options");
-            alert(secondValue + " test4 " + firstValue);
+            alert(secondValue + " test5 " + firstValue);
             console.log(firstValue);
        //  } else {
             // window.open('https://www.bing.com/search?q=' + encodeURIComponent(query));
