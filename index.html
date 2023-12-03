@@ -8,15 +8,19 @@
         // Get the selected values from both dropdowns
         var firstValue = document.getElementById('options1').value;
         var secondValue = document.getElementById('options2').value;
+        var Value2a = document.getElementById('options2a').value;
+
         var Value3 = document.getElementById('options3').value;
         var Value4 = document.getElementById('options4').value;
         var Value5 = document.getElementById('options5').value;
         var Value6 = document.getElementById('options6').value;
         var Value7 = document.getElementById('options7').value;
         var Value8 = document.getElementById('options8').value;
+        var Value9 = document.getElementById('options9').value;
+        var Value10 = document.getElementById('options10').value;
 
         // Concatenate the values
-        var query = 'Create a holiday celebration image using the following instructions. \r\nTone:' + firstValue + '\r\nHoliday:' + secondValue + '\r\nContext:' + Value3 + '\r\nColor Scheme:' + Value4 + '\r\nArtistic Style:' + Value5 + '\r\nTexture and Pattern:' + Value6 + '\r\nLighting and Shadows:' + Value7 + '\r\nPerspective: ' + Value8;
+        var query = 'Create a holiday celebration image using the following instructions. \r\nTone:' + firstValue + '\r\nHoliday:' + secondValue + '\r\nSubject:' + Value2a + '\r\nContext:' + Value3 + '\r\nColor Scheme:' + Value4 + '\r\nArtistic Style:' + Value5 + '\r\nTexture and Pattern:' + Value6 + '\r\nLighting and Shadows:' + Value7 + '\r\nPerspective: ' + Value8 + '\r\nImagery and Symbols: ' + Value9 + '\r\nComposition: ' + Value10;
 
         // Redirect to Bing with the concatenated query
         window.open('https://www.bing.com/search?q=' + encodeURIComponent(query));
@@ -29,7 +33,7 @@
 <div>
     <label for="options1">Choose a Tone:</label>
     <select name="q1" id="options1">
-        <option value=" Warm and cheerful ">Warm and cheerful </option>
+        <option value="Warm and cheerful ">Warm and cheerful </option>
         <option value=" Playful and whimsical "> Playful and whimsical </option>
         <option value=" Elegant and sophisticated "> Elegant and sophisticated </option>
         <option value=" Nostalgic and sentimental "> Nostalgic and sentimental </option>
@@ -49,6 +53,36 @@
         <option value=" Mysterious and enchanting "> Mysterious and enchanting </option>
         <option value=" Humorous and witty "> Humorous and witty </option>
         <option value=" Thoughtful and contemplative "> Thoughtful and contemplative </option>
+        <option value=" Magical and mystical "> Magical and mystical </option>
+        <option value=" Whimsical and fantastical "> Whimsical and fantastical </option>
+        <option value=" Inspiring and motivational "> Inspiring and motivational </option>
+        <option value=" Charming and delightful "> Charming and delightful </option>
+        <option value=" Dreamy and ethereal "> Dreamy and ethereal </option>
+        <option value=" Artistic and creative "> Artistic and creative </option>
+        <option value=" Bold and daring "> Bold and daring </option>
+        <option value=" Soft and gentle "> Soft and gentle </option>
+        <option value=" Festive and fun "> Festive and fun </option>
+        <option value=" Cozy and comfortable "> Cozy and comfortable </option>
+        <option value=" Vibrant and lively "> Vibrant and lively </option>
+        <option value=" Glamorous and chic "> Glamorous and chic </option>
+        <option value=" Peaceful and calming "> Peaceful and calming </option>
+        <option value=" Sentimental and nostalgic "> Sentimental and nostalgic </option>
+        <option value=" Elegant and refined "> Elegant and refined </option>
+        <option value=" Playful and mischievous "> Playful and mischievous </option>
+        <option value=" Romantic and passionate "> Romantic and passionate </option>
+        <option value=" Hopeful and optimistic "> Hopeful and optimistic </option>
+        <option value=" Enthusiastic and energetic "> Enthusiastic and energetic </option>
+        <option value=" Sophisticated and stylish "> Sophisticated and stylish </option>
+        <option value=" Traditional and timeless "> Traditional and timeless </option>
+        <option value=" Modern and edgy "> Modern and edgy </option>
+        <option value=" Quirky and unique "> Quirky and unique </option>
+        <option value=" Fresh and new "> Fresh and new </option>
+        <option value=" Luxurious and indulgent "> Luxurious and indulgent </option>
+        <option value=" Serene and tranquil "> Serene and tranquil </option>
+        <option value=" Fun and festive "> Fun and festive </option>
+        <option value=" Heartwarming and touching "> Heartwarming and touching </option>
+        <option value=" Wholesome and family-oriented "> Wholesome and family-oriented </option>
+        <option value=" Bright and cheerful"> Bright and cheerful</option>
     </select>
 <div>
 <div>
@@ -74,6 +108,61 @@
         <option value=" Candy Canes "> Candy Canes </option>
         <option value=" Christmas Trees "> Christmas Trees </option>
         <option value=" Holiday Lights"> Holiday Lights</option>
+    </select>
+<div>
+<div>
+    <label for="options2a">Choose a Subject:</label>
+    <select name="q2" id="options2a">
+        <option value="Snowflakes falling gently">Snowflakes falling gently</option>
+        <option value=" A family gathered around a fireplace"> A family gathered around a fireplace</option>
+        <option value=" A beautifully decorated Christmas tree"> A beautifully decorated Christmas tree</option>
+        <option value=" A menorah with all candles lit"> A menorah with all candles lit</option>
+        <option value=" Children building a snowman"> Children building a snowman</option>
+        <option value=" Santa Claus with his sack of gifts"> Santa Claus with his sack of gifts</option>
+        <option value=" A peaceful winter landscape"> A peaceful winter landscape</option>
+        <option value=" A group of carolers singing"> A group of carolers singing</option>
+        <option value=" A reindeer pulling a sleigh"> A reindeer pulling a sleigh</option>
+        <option value=" A Christmas wreath hanging on a door"> A Christmas wreath hanging on a door</option>
+        <option value=" A child opening a present"> A child opening a present</option>
+        <option value=" A festive holiday dinner table"> A festive holiday dinner table</option>
+        <option value=" A Kwanzaa kinara with candles"> A Kwanzaa kinara with candles</option>
+        <option value=" A snowy cityscape with holiday lights"> A snowy cityscape with holiday lights</option>
+        <option value=" A gingerbread house"> A gingerbread house</option>
+        <option value=" A pair of mittens hanging by the fireplace"> A pair of mittens hanging by the fireplace</option>
+        <option value=" A star shining brightly in the night sky"> A star shining brightly in the night sky</option>
+        <option value=" A poinsettia plant in full bloom"> A poinsettia plant in full bloom</option>
+        <option value=" A holiday-themed train set"> A holiday-themed train set</option>
+        <option value=" A pair of ice skates on a frozen pond"> A pair of ice skates on a frozen pond</option>
+        <option value=" A couple kissing under the mistletoe"> A couple kissing under the mistletoe</option>
+        <option value=" A snow globe with a winter scene"> A snow globe with a winter scene</option>
+        <option value=" A hot chocolate mug with marshmallows"> A hot chocolate mug with marshmallows</option>
+        <option value=" A sledding hill with children playing"> A sledding hill with children playing</option>
+        <option value=" A nativity scene"> A nativity scene</option>
+        <option value=" A candy cane striped border"> A candy cane striped border</option>
+        <option value=" A holiday cookie baking scene"> A holiday cookie baking scene</option>
+        <option value=" A dove of peace"> A dove of peace</option>
+        <option value=" A Christmas stocking filled with goodies"> A Christmas stocking filled with goodies</option>
+        <option value=" A group of people celebrating Hanukkah"> A group of people celebrating Hanukkah</option>
+        <option value=" A pair of snow boots next to a door"> A pair of snow boots next to a door</option>
+        <option value=" A holiday parade with floats and marching bands"> A holiday parade with floats and marching bands</option>
+        <option value=" A wrapped gift with a big bow"> A wrapped gift with a big bow</option>
+        <option value=" A New Year's countdown clock"> A New Year's countdown clock</option>
+        <option value=" A Christmas elf making toys"> A Christmas elf making toys</option>
+        <option value=" A horse-drawn carriage in the snow"> A horse-drawn carriage in the snow</option>
+        <option value=" A festive holiday sweater"> A festive holiday sweater</option>
+        <option value=" A bowl of fruit for Kwanzaa"> A bowl of fruit for Kwanzaa</option>
+        <option value=" A holiday bell ringing"> A holiday bell ringing</option>
+        <option value=" A Christmas pudding on a festive table"> A Christmas pudding on a festive table</option>
+        <option value=" A child writing a letter to Santa"> A child writing a letter to Santa</option>
+        <option value=" A snow-covered cabin in the woods"> A snow-covered cabin in the woods</option>
+        <option value=" A holiday ornament hanging from a tree"> A holiday ornament hanging from a tree</option>
+        <option value=" A group of people toasting with champagne"> A group of people toasting with champagne</option>
+        <option value=" A festive holiday banner or sign"> A festive holiday banner or sign</option>
+        <option value=" A polar bear with a Santa hat"> A polar bear with a Santa hat</option>
+        <option value=" A toy soldier standing guard"> A toy soldier standing guard</option>
+        <option value=" A group of children playing dreidel"> A group of children playing dreidel</option>
+        <option value=" A Christmas angel atop a tree"> A Christmas angel atop a tree</option>
+        <option value=" A festive holiday market scene"> A festive holiday market scene</option>
     </select>
 <div>
 <div>
@@ -109,12 +198,32 @@
         <option value=" A holiday train ride scene with a conductor and passengers "> A holiday train ride scene with a conductor and passengers </option>
         <option value=" A holiday cruise scene with a ship and ocean "> A holiday cruise scene with a ship and ocean </option>
         <option value=" A holiday spa scene with relaxation and pampering "> A holiday spa scene with relaxation and pampering </option>
+        <option value=" A holiday concert scene with musicians and instruments "> A holiday concert scene with musicians and instruments </option>
+        <option value=" A holiday dance scene with ball gowns and tuxedos "> A holiday dance scene with ball gowns and tuxedos </option>
+        <option value=" A holiday theater scene with actors and costumes "> A holiday theater scene with actors and costumes </option>
+        <option value=" A holiday museum scene with art and history "> A holiday museum scene with art and history </option>
+        <option value=" A holiday zoo scene with animals and decorations "> A holiday zoo scene with animals and decorations </option>
+        <option value=" A holiday botanical garden scene with flowers and lights "> A holiday botanical garden scene with flowers and lights </option>
+        <option value=" A holiday aquarium scene with fish and decorations "> A holiday aquarium scene with fish and decorations </option>
+        <option value=" A holiday science center scene with experiments and displays "> A holiday science center scene with experiments and displays </option>
+        <option value=" A holiday library scene with books and decorations "> A holiday library scene with books and decorations </option>
+        <option value=" A holiday sports game scene with fans and players "> A holiday sports game scene with fans and players </option>
+        <option value=" A holiday amusement park scene with rides and attractions "> A holiday amusement park scene with rides and attractions </option>
+        <option value=" A holiday circus scene with clowns and animals "> A holiday circus scene with clowns and animals </option>
+        <option value=" A holiday magic show scene with illusions and tricks "> A holiday magic show scene with illusions and tricks </option>
+        <option value=" A holiday puppet show scene with puppets and performers "> A holiday puppet show scene with puppets and performers </option>
+        <option value=" A holiday storytelling scene with books and readers "> A holiday storytelling scene with books and readers </option>
+        <option value=" A holiday ice sculpture scene with frozen art "> A holiday ice sculpture scene with frozen art </option>
+        <option value=" A holiday hot air balloon scene with a balloon and sky "> A holiday hot air balloon scene with a balloon and sky </option>
+        <option value=" A holiday horse-drawn carriage scene with a carriage and horses "> A holiday horse-drawn carriage scene with a carriage and horses </option>
+        <option value=" A holiday helicopter ride scene with a helicopter and sky "> A holiday helicopter ride scene with a helicopter and sky </option>
+        <option value=" A holiday hot rod scene with a car and decorations"> A holiday hot rod scene with a car and decorations</option>
     </select>
 <div>
 <div>
     <label for="options4">Choose a Color Scheme:</label>
     <select name="q2" id="options4">
-        <option value=" Red and green">Red and green</option>
+        <option value=" Red and green"> Red and green</option>
         <option value=" Gold and silver"> Gold and silver</option>
         <option value=" Blue and silver"> Blue and silver</option>
         <option value=" White and gold"> White and gold</option>
@@ -134,6 +243,36 @@
         <option value=" Green and black"> Green and black</option>
         <option value=" Blue and black"> Blue and black</option>
         <option value=" White and black"> White and black</option>
+        <option value=" Red and blue"> Red and blue</option>
+        <option value=" Green and blue"> Green and blue</option>
+        <option value=" Purple and silver"> Purple and silver</option>
+        <option value=" Pink and silver"> Pink and silver</option>
+        <option value=" Red and pink"> Red and pink</option>
+        <option value=" Green and pink"> Green and pink</option>
+        <option value=" Blue and pink"> Blue and pink</option>
+        <option value=" White and pink"> White and pink</option>
+        <option value=" Red and purple"> Red and purple</option>
+        <option value=" Green and purple"> Green and purple</option>
+        <option value=" Blue and purple"> Blue and purple</option>
+        <option value=" White and purple"> White and purple</option>
+        <option value=" Red and orange"> Red and orange</option>
+        <option value=" Green and orange"> Green and orange</option>
+        <option value=" Blue and orange"> Blue and orange</option>
+        <option value=" White and orange"> White and orange</option>
+        <option value=" Red and yellow"> Red and yellow</option>
+        <option value=" Green and yellow"> Green and yellow</option>
+        <option value=" Blue and yellow"> Blue and yellow</option>
+        <option value=" White and yellow"> White and yellow</option>
+        <option value=" Red and brown"> Red and brown</option>
+        <option value=" Green and brown"> Green and brown</option>
+        <option value=" Blue and brown"> Blue and brown</option>
+        <option value=" White and brown"> White and brown</option>
+        <option value=" Red and gray"> Red and gray</option>
+        <option value=" Green and gray"> Green and gray</option>
+        <option value=" Blue and gray"> Blue and gray</option>
+        <option value=" White and gray"> White and gray</option>
+        <option value=" Gold and brown"> Gold and brown</option>
+        <option value=" Silver and blue"> Silver and blue</option>
     </select>
 <div>
 <div>
@@ -159,12 +298,42 @@
         <option value=" Post-impressionism"> Post-impressionism</option>
         <option value=" Neo-expressionism"> Neo-expressionism</option>
         <option value=" Dadaism"> Dadaism</option>
+        <option value=" Futurism"> Futurism</option>
+        <option value=" Romanticism"> Romanticism</option>
+        <option value=" Baroque"> Baroque</option>
+        <option value=" Rococo"> Rococo</option>
+        <option value=" Gothic"> Gothic</option>
+        <option value=" Renaissance"> Renaissance</option>
+        <option value=" Classical"> Classical</option>
+        <option value=" Contemporary"> Contemporary</option>
+        <option value=" Graffiti"> Graffiti</option>
+        <option value=" Street art"> Street art</option>
+        <option value=" Digital art"> Digital art</option>
+        <option value=" Collage"> Collage</option>
+        <option value=" Mosaic"> Mosaic</option>
+        <option value=" Stained glass"> Stained glass</option>
+        <option value=" Woodcut"> Woodcut</option>
+        <option value=" Lithography"> Lithography</option>
+        <option value=" Etching"> Etching</option>
+        <option value=" Screen printing"> Screen printing</option>
+        <option value=" Engraving"> Engraving</option>
+        <option value=" Calligraphy"> Calligraphy</option>
+        <option value=" Illuminated manuscript"> Illuminated manuscript</option>
+        <option value=" Tapestry"> Tapestry</option>
+        <option value=" Ceramics"> Ceramics</option>
+        <option value=" Glassblowing"> Glassblowing</option>
+        <option value=" Metalworking"> Metalworking</option>
+        <option value=" Woodworking"> Woodworking</option>
+        <option value=" Sculpture"> Sculpture</option>
+        <option value=" Installation art"> Installation art</option>
+        <option value=" Performance art"> Performance art</option>
+        <option value=" Land art"> Land art</option>
     </select>
 <div>
 <div>
     <label for="options6">Choose a Texture and Pattern:</label>
     <select name="q2" id="options6">
-        <option value=" Snowflakes">Snowflakes</option>
+        <option value="Snowflakes">Snowflakes</option>
         <option value=" Candy canes"> Candy canes</option>
         <option value=" Holly leaves"> Holly leaves</option>
         <option value=" Reindeer antlers"> Reindeer antlers</option>
@@ -184,6 +353,36 @@
         <option value=" Chevron"> Chevron</option>
         <option value=" Tartan"> Tartan</option>
         <option value=" Damask"> Damask</option>
+        <option value=" Lace"> Lace</option>
+        <option value=" Knit"> Knit</option>
+        <option value=" Crochet"> Crochet</option>
+        <option value=" Embroidery"> Embroidery</option>
+        <option value=" Sequins"> Sequins</option>
+        <option value=" Glitter"> Glitter</option>
+        <option value=" Foil"> Foil</option>
+        <option value=" Metallic"> Metallic</option>
+        <option value=" Burlap"> Burlap</option>
+        <option value=" Wood grain"> Wood grain</option>
+        <option value=" Marble"> Marble</option>
+        <option value=" Stone"> Stone</option>
+        <option value=" Brick"> Brick</option>
+        <option value=" Concrete"> Concrete</option>
+        <option value=" Leather"> Leather</option>
+        <option value=" Fur"> Fur</option>
+        <option value=" Feathers"> Feathers</option>
+        <option value=" Velvet"> Velvet</option>
+        <option value=" Satin"> Satin</option>
+        <option value=" Silk"> Silk</option>
+        <option value=" Denim"> Denim</option>
+        <option value=" Paisley"> Paisley</option>
+        <option value=" Floral"> Floral</option>
+        <option value=" Geometric"> Geometric</option>
+        <option value=" Tribal"> Tribal</option>
+        <option value=" Animal print"> Animal print</option>
+        <option value=" Camouflage"> Camouflage</option>
+        <option value=" Striated"> Striated</option>
+        <option value=" Abstract"> Abstract</option>
+        <option value=" Watercolor"> Watercolor</option>
     </select>
 <div>
 <div>
@@ -227,6 +426,86 @@
         <option value="Eye-Level View">Eye-Level View</option>
         <option value="Over-the-Shoulder View">Over-the-Shoulder View</option>
         <option value="Reflection View">Reflection View</option>
+    </select>
+<div>
+<div>
+    <label for="options9">Choose Imagery and Symbols:</label>
+    <select name="q2" id="options9">
+        <option value="Christmas tree">Christmas tree</option>
+        <option value=" Snowman"> Snowman</option>
+        <option value=" Santa Claus"> Santa Claus</option>
+        <option value=" Reindeer"> Reindeer</option>
+        <option value=" Holly"> Holly</option>
+        <option value=" Mistletoe"> Mistletoe</option>
+        <option value=" Candy canes"> Candy canes</option>
+        <option value=" Gingerbread house"> Gingerbread house</option>
+        <option value=" Christmas lights"> Christmas lights</option>
+        <option value=" Snowflakes"> Snowflakes</option>
+        <option value=" Wreaths"> Wreaths</option>
+        <option value=" Presents"> Presents</option>
+        <option value=" Stockings"> Stockings</option>
+        <option value=" Ornaments"> Ornaments</option>
+        <option value=" Nativity scene"> Nativity scene</option>
+        <option value=" Angels"> Angels</option>
+        <option value=" Star of Bethlehem"> Star of Bethlehem</option>
+        <option value=" Wise men"> Wise men</option>
+        <option value=" Shepherds"> Shepherds</option>
+        <option value=" Baby Jesus"> Baby Jesus</option>
+        <option value=" Mary and Joseph"> Mary and Joseph</option>
+        <option value=" Christmas bells"> Christmas bells</option>
+        <option value=" Sleigh"> Sleigh</option>
+        <option value=" Fireplace"> Fireplace</option>
+        <option value=" Hot cocoa"> Hot cocoa</option>
+        <option value=" Eggnog"> Eggnog</option>
+        <option value=" Cookies"> Cookies</option>
+        <option value=" Fruitcake"> Fruitcake</option>
+        <option value=" Poinsettias"> Poinsettias</option>
+        <option value=" Candles"> Candles</option>
+        <option value=" Ice skates"> Ice skates</option>
+        <option value=" Mittens"> Mittens</option>
+        <option value=" Scarves"> Scarves</option>
+        <option value=" Winter hats"> Winter hats</option>
+        <option value=" Snowy landscapes"> Snowy landscapes</option>
+        <option value=" Icicles"> Icicles</option>
+        <option value=" Snow angels"> Snow angels</option>
+        <option value=" Snowball fights"> Snowball fights</option>
+        <option value=" Skiing"> Skiing</option>
+        <option value=" Snowboarding"> Snowboarding</option>
+        <option value=" Ice fishing"> Ice fishing</option>
+        <option value=" Polar bears"> Polar bears</option>
+        <option value=" Penguins"> Penguins</option>
+        <option value=" Arctic animals"> Arctic animals</option>
+        <option value=" Winter sports equipment"> Winter sports equipment</option>
+        <option value=" Christmas carolers"> Christmas carolers</option>
+        <option value=" Church bells"> Church bells</option>
+        <option value=" Christmas parade"> Christmas parade</option>
+        <option value=" New Year's Eve fireworks"> New Year's Eve fireworks</option>
+        <option value=" Champagne glasses"> Champagne glasses</option>
+    </select>
+<div>
+<div>
+    <label for="options10">Choose a Composition:</label>
+    <select name="q2" id="options10">
+        <option value="A snowy landscape with a cozy cabin in the background">A snowy landscape with a cozy cabin in the background</option>
+        <option value=" A Christmas tree decorated with colorful ornaments and twinkling lights"> A Christmas tree decorated with colorful ornaments and twinkling lights</option>
+        <option value=" A group of carolers singing in front of a decorated house"> A group of carolers singing in front of a decorated house</option>
+        <option value=" A family gathered around a fireplace, opening presents"> A family gathered around a fireplace, opening presents</option>
+        <option value=" A winter wonderland scene with a sleigh and reindeer"> A winter wonderland scene with a sleigh and reindeer</option>
+        <option value=" A Hanukkah menorah with lit candles"> A Hanukkah menorah with lit candles</option>
+        <option value=" A Kwanzaa celebration with candles and traditional decorations"> A Kwanzaa celebration with candles and traditional decorations</option>
+        <option value=" A New Year's Eve party with fireworks and champagne"> A New Year's Eve party with fireworks and champagne</option>
+        <option value=" A child building a snowman in the front yard"> A child building a snowman in the front yard</option>
+        <option value=" A group of friends ice skating on a frozen pond"> A group of friends ice skating on a frozen pond</option>
+        <option value=" A festive table setting with holiday dishes and decorations"> A festive table setting with holiday dishes and decorations</option>
+        <option value=" A cozy living room with a decorated Christmas tree and presents"> A cozy living room with a decorated Christmas tree and presents</option>
+        <option value=" A winter scene with a church and snow-covered trees"> A winter scene with a church and snow-covered trees</option>
+        <option value=" A family baking holiday cookies in the kitchen"> A family baking holiday cookies in the kitchen</option>
+        <option value=" A group of children making snow angels in the snow"> A group of children making snow angels in the snow</option>
+        <option value=" A holiday parade with floats and marching bands"> A holiday parade with floats and marching bands</option>
+        <option value=" A family taking a winter hike through the woods"> A family taking a winter hike through the woods</option>
+        <option value=" A group of carolers singing in front of a decorated tree"> A group of carolers singing in front of a decorated tree</option>
+        <option value=" A winter scene with a horse-drawn carriage"> A winter scene with a horse-drawn carriage</option>
+        <option value=" A family taking a sleigh ride through the snow"> A family taking a sleigh ride through the snow</option>
     </select>
 <div>
 </br>
