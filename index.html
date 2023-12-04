@@ -582,7 +582,9 @@
 <script>
 function addLF(selectObj) {
     var selectedOption = selectObj.options[selectObj.selectedIndex];
-    selectedOption.value = "\n" + selectedOption.value;
+    if (selectedOption.value.length >= 1) {
+        selectedOption.value = "\n" + selectedOption.value;
+    }
 }
 </script>	
 </br>
