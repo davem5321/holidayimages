@@ -101,6 +101,16 @@
         }
         select:hover { border-color: #809784; }
         select.has-value { color: var(--ink); background-color: #f1f5ed; border-color: #aebfac; }
+        input[type="text"] {
+            width: 100%;
+            min-height: 46px;
+            padding: 11px 13px;
+            border: 1px solid #d8ddd5;
+            border-radius: 8px;
+            background: #fafbf8;
+            color: var(--ink);
+        }
+        input[type="text"]:focus { outline: 2px solid #809784; outline-offset: 2px; }
         .preview { position: sticky; top: 24px; margin-top: 4px; border: 1px solid #d5ddcf; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 10px 30px #243e3506; }
         .preview-body { padding: 26px; }
         .preview .eyebrow { color: #59715e; margin-bottom: 12px; }
@@ -425,6 +435,18 @@
         <option value="Context: A holiday hot rod scene with a car and decorations"> A holiday hot rod scene with a car and decorations</option>
     </select>
 </div>
+<div class="field">
+    <label for="audience">Who is it for?</label>
+    <select id="audience">
+        <option value="">Choose an audience</option>
+        <option value="Audience: A general holiday greeting for anyone ">Anyone</option>
+        <option value="Audience: Young children, with a playful and age-appropriate feel ">Young children</option>
+        <option value="Audience: Family, with a warm and welcoming feel ">Family</option>
+        <option value="Audience: A close friend, with a personal and cheerful feel ">A friend</option>
+        <option value="Audience: A romantic partner, with a loving and thoughtful feel ">A partner</option>
+        <option value="Audience: Colleagues, with a warm but professional feel ">Colleagues</option>
+    </select>
+</div>
         </div>
     </fieldset>
     <fieldset>
@@ -734,6 +756,42 @@
     </select>
 </div>
 <div class="field">
+    <label for="framing">Shape &amp; framing</label>
+    <select id="framing">
+        <option value="">Choose a shape</option>
+        <option value="Framing: Square format, with a balanced composition suited to a social post ">Square</option>
+        <option value="Framing: Portrait format, composed vertically for a greeting card ">Portrait</option>
+        <option value="Framing: Landscape format, composed horizontally for a desktop wallpaper ">Landscape</option>
+        <option value="Framing: Wide panoramic banner format ">Wide banner</option>
+    </select>
+</div>
+<div class="field">
+    <label for="text-on-image">Greeting or text</label>
+    <select id="text-on-image">
+        <option value="">Choose text to include</option>
+        <option value="Text: No words or lettering ">No text</option>
+        <option value="Text: Include the words “Merry Christmas” ">Merry Christmas</option>
+        <option value="Text: Include the words “Happy Holidays” ">Happy Holidays</option>
+        <option value="Text: Include the words “Season’s Greetings” ">Season’s Greetings</option>
+        <option value="Text: Include the words “Happy New Year” ">Happy New Year</option>
+        <option value="Text: Custom greeting">Custom message (type below)</option>
+    </select>
+</div>
+<div class="field" id="custom-greeting-field" hidden>
+    <label for="custom-greeting">Your custom greeting</label>
+    <input id="custom-greeting" type="text" maxlength="120" placeholder="For example, Happy holidays, Alex!">
+</div>
+<div class="field">
+    <label for="detail-level">Amount of detail</label>
+    <select id="detail-level">
+        <option value="">Choose a detail level</option>
+        <option value="Detail: Keep the image simple, clean, and minimal ">Simple and minimal</option>
+        <option value="Detail: Use a balanced amount of detail ">Balanced</option>
+        <option value="Detail: Add rich details and decorative elements ">Richly detailed</option>
+        <option value="Detail: Make the scene highly intricate and elaborate ">Highly intricate</option>
+    </select>
+</div>
+<div class="field">
     <label for="options11">Format</label>
     <select id="options11">
         <option value="">Choose the final format</option>
@@ -797,7 +855,7 @@
             <p class="eyebrow">From inspiration to imagination</p>
             <div class="preview-heading">
                 <h2 id="preview-title">Your prompt</h2>
-                <span class="count" id="selection-count" role="status">0 / 12 details</span>
+                <span class="count" id="selection-count" role="status">0 / 16 details</span>
             </div>
             <p class="preview-description">A little of this, a touch of that. Your idea comes together here as you choose.</p>
             <label class="prompt-label" for="prompt-preview">Review and edit your prompt</label>
@@ -826,15 +884,25 @@
     const form = document.getElementById('prompt-form');
     const selects = Array.from(form.querySelectorAll('select'));
     const preview = document.getElementById('prompt-preview');
+    const textChoice = document.getElementById('text-on-image');
+    const customGreeting = document.getElementById('custom-greeting');
     const copyButton = document.getElementById('copy-prompt');
     const feedback = document.getElementById('feedback');
 
     function updatePrompt() {
-        const details = selects.map(select => select.value.trim()).filter(Boolean);
+        const details = selects.map(select => {
+            if (select === textChoice && textChoice.value === 'Text: Custom greeting') {
+                return customGreeting.value.trim()
+                    ? `Text: ${customGreeting.value.trim()}`
+                    : textChoice.value;
+            }
+            return select.value.trim();
+        }).filter(Boolean);
         const prompt = details.length
             ? 'Create an image using the following instructions:\n' + details.join('\n')
             : '';
 
+        document.getElementById('custom-greeting-field').hidden = textChoice.value !== 'Text: Custom greeting';
         preview.value = prompt;
         copyButton.disabled = !prompt;
         document.getElementById('selection-count').textContent = `${details.length} / ${selects.length} details`;
@@ -847,16 +915,17 @@
             updatePrompt();
         }
     });
+    customGreeting.addEventListener('input', updatePrompt);
     preview.addEventListener('input', () => {
         copyButton.disabled = !preview.value.trim();
         feedback.textContent = '';
     });
     form.addEventListener('reset', () => {
         // The reset event fires before the browser restores the default values.
-        queueMicrotask(() => {
+        setTimeout(() => {
             updatePrompt();
             feedback.textContent = 'All details cleared. Ready for a fresh idea.';
-        });
+        }, 0);
     });
     form.addEventListener('submit', event => {
         if (!preview.value.trim()) {
