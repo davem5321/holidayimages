@@ -2,40 +2,240 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Turn a little holiday inspiration into a creative image prompt. Choose your scene, explore artistic styles, and take your idea to Bing.">
+    <meta name="theme-color" content="#244b40">
     <title>Holiday Image Generator</title>
-    <script>
-    function submitToBing() {
-        // Get the selected values from both dropdowns
-        var firstValue = document.getElementById('options1').value;
-        var secondValue = document.getElementById('options2').value;
-        var Value2a = document.getElementById('options2a').value;
-
-        var Value3 = document.getElementById('options3').value;
-        var Value4 = document.getElementById('options4').value;
-        var Value5 = document.getElementById('options5').value;
-        var Value6 = document.getElementById('options6').value;
-        var Value7 = document.getElementById('options7').value;
-        var Value8 = document.getElementById('options8').value;
-        var Value9 = document.getElementById('options9').value;
-        var Value10 = document.getElementById('options10').value;
-        var Value11 = document.getElementById('options11').value;
-
-        // Concatenate the values
-        var query = 'Create an image using the following instructions:' + firstValue + secondValue + Value2a + Value3 + Value4 + Value5 + Value6 + Value7 + Value8 + Value9 + Value10 + Value11;
-
-        // Redirect to Bing with the concatenated query
-        window.open('https://www.bing.com/search?q=' + encodeURIComponent(query));
-    }
-    </script>
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #243e35;
+            --muted: #65716a;
+            --green: #244b40;
+            --paper: #f8f7f2;
+            --line: #dedfd6;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        button, select, textarea { font: inherit; }
+        button, a, select { -webkit-tap-highlight-color: transparent; }
+        a { color: inherit; text-underline-offset: 4px; }
+        button, select { cursor: pointer; }
+        button { transition: background-color .18s ease, border-color .18s ease; }
+        :focus-visible { outline: 3px solid #ad632c; outline-offset: 4px; }
+        .shell { width: min(1160px, calc(100% - 64px)); margin-inline: auto; }
+        .skip-link {
+            position: absolute;
+            top: -80px;
+            left: 16px;
+            z-index: 2;
+            padding: 12px 20px;
+            background: white;
+        }
+        .skip-link:focus { top: 12px; }
+        .site-header { border-bottom: 1px solid var(--line); }
+        .header-inner, .brand, .section-heading, .preview-heading, .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .header-inner { min-height: 88px; }
+        .brand { justify-content: flex-start; gap: 11px; font-size: 19px; font-weight: 650; text-decoration: none; }
+        .brand-mark {
+            display: grid;
+            place-items: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 11px;
+            background: var(--green);
+            color: #f0d69f;
+        }
+        .header-note { color: var(--muted); font-size: 13px; }
+        .hero {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            align-items: center;
+            gap: 48px;
+            padding-block: 52px 44px;
+        }
+        .eyebrow { margin: 0 0 14px; color: #756141; font-size: 11px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; }
+        h1 { margin: 0; font-family: Georgia, serif; font-size: clamp(40px, 4.8vw, 62px); font-weight: 400; line-height: 1.08; letter-spacing: -2px; }
+        h1 em { color: #567460; font-weight: 400; }
+        .hero-description { max-width: 470px; margin: 21px 0 0; color: var(--muted); font-size: 16px; }
+        .hero-art { position: relative; padding: 14px 28px; }
+        .hero-art svg { display: block; width: 100%; max-height: 268px; }
+        .art-caption { margin: 4px 0 0; text-align: center; color: #756141; font-size: 11px; letter-spacing: 1px; }
+        .workspace { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); align-items: start; gap: 28px; padding-bottom: 64px; }
+        .builder { min-width: 0; }
+        .builder-intro { margin-bottom: 22px; }
+        h2 { margin: 0; font-size: 21px; font-weight: 600; letter-spacing: -.5px; }
+        .builder-intro p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+        .text-button { border: 0; background: transparent; color: var(--muted); padding: 8px 0 8px 12px; font-size: 13px; white-space: nowrap; }
+        .text-button:hover { color: var(--green); text-decoration: underline; }
+        fieldset { min-width: 0; margin: 0 0 20px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+        legend { padding: 0 8px; font-weight: 650; font-size: 15px; }
+        .step { display: inline-grid; place-items: center; width: 26px; height: 26px; margin-right: 7px; border-radius: 50%; background: #eef1e9; color: #50705a; font-size: 11px; }
+        .section-description { margin: -2px 0 19px; color: var(--muted); font-size: 13px; }
+        .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 18px; }
+        .field { min-width: 0; }
+        label { display: block; margin-bottom: 7px; font-size: 13px; font-weight: 600; }
+        select {
+            appearance: none;
+            width: 100%;
+            min-width: 0;
+            min-height: 46px;
+            padding: 11px 34px 11px 13px;
+            border: 1px solid #d8ddd5;
+            border-radius: 8px;
+            background: #fafbf8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%2365716a' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 13px center;
+            color: var(--muted);
+            text-overflow: ellipsis;
+        }
+        select:hover { border-color: #809784; }
+        select.has-value { color: var(--ink); background-color: #f1f5ed; border-color: #aebfac; }
+        .preview { position: sticky; top: 24px; margin-top: 4px; border: 1px solid #d5ddcf; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 10px 30px #243e3506; }
+        .preview-body { padding: 26px; }
+        .preview .eyebrow { color: #59715e; margin-bottom: 12px; }
+        .preview-heading { align-items: flex-start; }
+        .count { border: 1px solid #d7dfd2; border-radius: 20px; padding: 3px 9px; color: #5c715f; font-size: 11px; white-space: nowrap; }
+        .preview-description { margin: 11px 0 20px; color: var(--muted); font-size: 13px; }
+        .prompt-label { color: var(--muted); font-size: 11px; font-weight: 500; }
+        textarea {
+            display: block;
+            width: 100%;
+            min-height: 224px;
+            padding: 17px;
+            resize: vertical;
+            border: 1px solid #e1e5dc;
+            border-radius: 10px;
+            background: #f8faf5;
+            color: var(--ink);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        textarea::placeholder { color: #727d70; opacity: 1; }
+        .preview-actions { display: grid; gap: 10px; margin-top: 18px; }
+        .button { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 46px; padding: 11px 16px; border: 1px solid var(--green); border-radius: 8px; font-size: 14px; font-weight: 600; }
+        .button-primary { background: var(--green); color: #fff; }
+        .button-primary:hover { background: #163a2f; }
+        .button-secondary { background: #fff; border-color: var(--line); color: var(--ink); }
+        .button-secondary:hover:not(:disabled) { background: #f0f3ec; border-color: #aebfac; }
+        button:disabled { opacity: .5; cursor: not-allowed; }
+        .handoff-note { margin: 13px 0 0; text-align: center; color: var(--muted); font-size: 11px; }
+        .status { margin: 0; color: #784221; font-size: 13px; }
+        .status:not(:empty) { margin-top: 14px; }
+        .tip { padding: 20px 26px; background: #eff3e9; border-top: 1px solid #dde4d5; font-size: 12px; color: #58705b; }
+        .tip strong { display: block; margin-bottom: 4px; color: var(--ink); font-size: 13px; }
+        .tip p { margin: 0; }
+        .site-footer { border-top: 1px solid var(--line); }
+        .footer-inner { min-height: 78px; color: var(--muted); font-size: 12px; }
+        .footer-inner p { margin: 0; }
+        .footer-tagline { font-family: Georgia, serif; font-style: italic; font-size: 15px; color: #59715e; }
+        noscript p { padding: 16px; border: 1px solid #ad632c; border-radius: 8px; }
+        @media (max-width: 900px) {
+            .shell { width: calc(100% - 40px); }
+            .hero { gap: 20px; }
+            .hero-art { padding-inline: 0; }
+            .workspace { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 20px; }
+            .fields { grid-template-columns: minmax(0, 1fr); }
+            .preview-body, fieldset { padding: 20px; }
+        }
+        @media (max-width: 650px) {
+            .header-inner { min-height: 72px; }
+            .header-note { display: none; }
+            .hero { grid-template-columns: 1fr; padding-block: 34px; gap: 20px; }
+            h1 { font-size: 46px; }
+            .hero-art { max-width: 300px; margin-inline: auto; width: 100%; }
+            .hero-art svg { max-height: 190px; }
+            .workspace { grid-template-columns: minmax(0, 1fr); gap: 8px; padding-bottom: 36px; }
+            .preview { position: static; }
+            .footer-inner { flex-direction: column; justify-content: center; gap: 6px; padding-block: 20px; text-align: center; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            button { transition: none; }
+        }
+    </style>
 </head>
 <body>
 
-<h3>Select one or more options, then press the Bing button to run your Image prompt</h3>
-<form onsubmit="event.preventDefault(); submitToBing();">
-<div>
-    <label for="options1">Choose a Tone:</label>
-    <select name="q1" id="options1" onchange="addLF(this)">
-        <option value="">if needed, or select this option (or leave as is) if this setting is not needed</option>
+<a class="skip-link" href="#builder">Skip to prompt builder</a>
+<header class="site-header">
+    <div class="shell header-inner">
+        <a class="brand" href="./" aria-label="Holiday Studio home">
+            <span class="brand-mark" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+            </span>
+            Holiday Studio
+        </a>
+        <span class="header-note">A little inspiration. A little holiday magic.</span>
+    </div>
+</header>
+<main class="shell">
+    <section class="hero" aria-labelledby="hero-title">
+        <div>
+            <p class="eyebrow">The holiday image prompt builder</p>
+            <h1 id="hero-title">Make something<br><em>worth celebrating.</em></h1>
+            <p class="hero-description">Dream up a scene, make it your own, and turn a little holiday inspiration into your next image prompt.</p>
+        </div>
+        <div class="hero-art">
+            <svg viewBox="0 0 400 280" fill="none" aria-hidden="true">
+                <defs>
+                    <linearGradient id="sky" x1="110" y1="30" x2="300" y2="225" gradientUnits="userSpaceOnUse"><stop stop-color="#e3eadb"/><stop offset="1" stop-color="#c0d0bc"/></linearGradient>
+                    <clipPath id="globe"><circle cx="200" cy="127" r="104"/></clipPath>
+                </defs>
+                <ellipse cx="200" cy="253" rx="119" ry="12" fill="#e7e8dc"/>
+                <circle cx="200" cy="127" r="109" stroke="#c2cfba"/>
+                <g clip-path="url(#globe)">
+                    <circle cx="200" cy="127" r="104" fill="url(#sky)"/>
+                    <circle cx="241" cy="72" r="22" fill="#fcf6df"/>
+                    <path d="M90 195Q149 160 204 182T310 173V241H90Z" fill="#f9faf2"/>
+                    <path d="M107 183 136 123 165 183Z" fill="#698570"/>
+                    <path d="M113 158 136 109 159 158Z" fill="#78937b"/>
+                    <path d="M244 190 270 125 296 190Z" fill="#3f6653"/>
+                    <path d="M249 163 270 108 291 163Z" fill="#577961"/>
+                    <path d="M166 170h66v42h-66z" fill="#b47853"/>
+                    <path d="m154 174 45-43 45 43Z" fill="#466653"/>
+                    <path d="m151 171 48-47 48 47-6 7-42-41-42 41Z" fill="#fffdf4"/>
+                    <path d="M220 130h10v23l-10-10z" fill="#b47853"/>
+                    <path d="M181 181h13v16h-13zM205 181h13v16h-13z" fill="#f8dba0"/>
+                    <path d="M187.5 181v16m24-16v16" stroke="#b47853" stroke-width="2"/>
+                    <path d="M92 215q63-25 121-4t96-12v43H92Z" fill="#fffdf7"/>
+                    <g fill="#fffdf7"><circle cx="151" cy="81" r="3"/><circle cx="185" cy="56" r="2"/><circle cx="212" cy="100" r="3"/><circle cx="120" cy="129" r="2"/><circle cx="175" cy="119" r="2"/><circle cx="279" cy="87" r="2"/><circle cx="253" cy="152" r="2"/></g>
+                    <path d="M222 119q-8-12 0-20t0-19" stroke="#fffdf7" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+                </g>
+                <path d="M144 220h112l10 21H134Z" fill="#365744"/>
+                <rect x="130" y="238" width="140" height="12" rx="6" fill="#244b40"/>
+                <path d="m72 58 3 9 9 3-9 3-3 9-3-9-9-3 9-3Zm254 97 3 9 9 3-9 3-3 9-3-9-9-3 9-3Z" fill="#b69253"/>
+                <circle cx="325" cy="91" r="3" fill="#b69253"/>
+                <circle cx="77" cy="180" r="3" fill="#a1b097"/>
+            </svg>
+            <p class="art-caption">Small details. Endless possibilities.</p>
+        </div>
+    </section>
+    <noscript><p>This prompt builder needs JavaScript. Enable it to preview your selections and open your prompt in Bing.</p></noscript>
+    <form id="prompt-form" class="workspace" action="https://www.bing.com/search" method="get" target="_blank" rel="noopener noreferrer">
+    <input type="hidden" name="q" id="query">
+    <div class="builder" id="builder" tabindex="-1">
+        <div class="section-heading builder-intro">
+            <div><h2>Your creative direction</h2><p>Start anywhere. Every detail is optional.</p></div>
+            <button class="text-button" type="reset">Reset all</button>
+        </div>
+    <fieldset>
+        <legend><span class="step">01</span> Set the scene</legend>
+        <p class="section-description">Pick the feeling, the celebration, and the story.</p>
+        <div class="fields">
+<div class="field">
+    <label for="options1">Tone &amp; mood</label>
+    <select id="options1">
+        <option value="">Choose a mood</option>
         <option value="Tone: Warm and cheerful "> Warm and cheerful </option>
         <option value="Tone: Playful and whimsical "> Playful and whimsical </option>
         <option value="Tone: Elegant and sophisticated "> Elegant and sophisticated </option>
@@ -87,11 +287,11 @@
         <option value="Tone: Wholesome and family-oriented "> Wholesome and family-oriented </option>
         <option value="Tone: Bright and cheerful"> Bright and cheerful</option>
     </select>
-<div>
-<div>
-    <label for="options2">Choose a Holiday:</label>
-    <select name="q2" id="options2" onchange="addLF(this)">
-        <option value="">if needed, or select this option (or leave as is) if this setting is not needed</option>
+</div>
+<div class="field">
+    <label for="options2">Holiday</label>
+    <select id="options2">
+        <option value="">Choose a celebration</option>
         <option value="Holiday: Christmas "> Christmas </option>
         <option value="Holiday: Hanukkah "> Hanukkah </option>
         <option value="Holiday: Kwanzaa "> Kwanzaa </option>
@@ -113,11 +313,11 @@
         <option value="Holiday: Christmas Trees "> Christmas Trees </option>
         <option value="Holiday: Holiday Lights"> Holiday Lights</option>
     </select>
-<div>
-<div>
-    <label for="options2a">Choose a Subject:</label>
-    <select name="q2" id="options2a" onchange="addLF(this)">
-        <option value="">if needed, or select this option (or leave as is) if this setting is not needed</option>
+</div>
+<div class="field">
+    <label for="options2a">Subject</label>
+    <select id="options2a">
+        <option value="">Choose your main subject</option>
         <option value="Subject: Snowflakes falling gently"> Snowflakes falling gently</option>
         <option value="Subject: A family gathered around a fireplace"> A family gathered around a fireplace</option>
         <option value="Subject: A beautifully decorated Christmas tree"> A beautifully decorated Christmas tree</option>
@@ -169,11 +369,11 @@
         <option value="Subject: A Christmas angel atop a tree"> A Christmas angel atop a tree</option>
         <option value="Subject: A festive holiday market scene"> A festive holiday market scene</option>
     </select>
-<div>
-<div>
-    <label for="options3">Choose a Context:</label>
-    <select name="q2" id="options3" onchange="addLF(this)">
-        <option value="">if needed, or select this option (or leave as is) if this setting is not needed</option>
+</div>
+<div class="field">
+    <label for="options3">Setting &amp; context</label>
+    <select id="options3">
+        <option value="">Choose a backdrop</option>
         <option value="Context: A cozy cabin in the snow "> A cozy cabin in the snow </option>
         <option value="Context: A family gathered around a fireplace "> A family gathered around a fireplace </option>
         <option value="Context: A winter wonderland scene with snowflakes falling "> A winter wonderland scene with snowflakes falling </option>
@@ -225,11 +425,17 @@
         <option value="Context: A holiday helicopter ride scene with a helicopter and sky "> A holiday helicopter ride scene with a helicopter and sky </option>
         <option value="Context: A holiday hot rod scene with a car and decorations"> A holiday hot rod scene with a car and decorations</option>
     </select>
-<div>
-<div>
-    <label for="options4">Choose a Color Scheme:</label>
-    <select name="q2" id="options4" onchange="addLF(this)">
-        <option value="">if needed, or select this option (or leave as is) if this setting is not needed</option>
+</div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend><span class="step">02</span> Make it feel like you</legend>
+        <p class="section-description">Bring your idea to life with color, texture, and light.</p>
+        <div class="fields">
+<div class="field">
+    <label for="options4">Color palette</label>
+    <select id="options4">
+        <option value="">Choose your colors</option>
         <option value="Color Scheme:Red, green, and Blue">Red, green, and Blue</option>
         <option value="Color Scheme:Gold, silver, and Red">Gold, silver, and Red</option>
         <option value="Color Scheme:Blue, silver, and Gold">Blue, silver, and Gold</option>
@@ -281,11 +487,11 @@
         <option value="Color Scheme:Gold, brown, and Red">Gold, brown, and Red</option>
         <option value="Color Scheme:Silver, blue, and Gold">Silver, blue, and Gold</option>
     </select>
-<div>
-<div>
-    <label for="options5">Choose an Artistic Style:</label>
-    <select name="q2" id="options5" onchange="addLF(this)">
-        <option value="">if needed, or select this option (or leave as is) if this setting is not needed</option>
+</div>
+<div class="field">
+    <label for="options5">Artistic style</label>
+    <select id="options5">
+        <option value="">Choose an art style</option>
         <option value="Artistic Style: Watercolor"> Watercolor</option>
         <option value="Artistic Style: Oil painting"> Oil painting</option>
         <option value="Artistic Style: Sketch"> Sketch</option>
@@ -337,11 +543,11 @@
         <option value="Artistic Style: Performance art"> Performance art</option>
         <option value="Artistic Style: Land art"> Land art</option>
     </select>
-<div>
-<div>
-    <label for="options6">Choose a Texture and Pattern:</label>
-    <select name="q2" id="options6" onchange="addLF(this)">
-        <option value="">if needed, or select this option (or leave as is) if this setting is not needed</option>
+</div>
+<div class="field">
+    <label for="options6">Texture &amp; pattern</label>
+    <select id="options6">
+        <option value="">Add a little texture</option>
         <option value="Texture and Pattern:Snowflakes">Snowflakes</option>
         <option value="Texture and Pattern: Candy canes"> Candy canes</option>
         <option value="Texture and Pattern: Holly leaves"> Holly leaves</option>
@@ -393,11 +599,11 @@
         <option value="Texture and Pattern: Abstract"> Abstract</option>
         <option value="Texture and Pattern: Watercolor"> Watercolor</option>
     </select>
-<div>
-<div>
-    <label for="options7">Choose a setting for Lighting and Shadows:</label>
-    <select name="q2" id="options7" onchange="addLF(this)">
-        <option value="">if needed, or select this option (or leave as is) if this setting is not needed</option>
+</div>
+<div class="field">
+    <label for="options7">Lighting &amp; shadows</label>
+    <select id="options7">
+        <option value="">Set the lighting</option>
         <option value="Lighting and Shadows: Warm, golden light shining on a cozy fireplace scene"> Warm, golden light shining on a cozy fireplace scene</option>
         <option value="Lighting and Shadows: Soft, diffused light illuminating a snowy landscape"> Soft, diffused light illuminating a snowy landscape</option>
         <option value="Lighting and Shadows: Bright, colorful lights on a Christmas tree"> Bright, colorful lights on a Christmas tree</option>
@@ -419,11 +625,17 @@
         <option value="Lighting and Shadows: Soft, warm light on a family enjoying a holiday meal together"> Soft, warm light on a family enjoying a holiday meal together</option>
         <option value="Lighting and Shadows: Shadows of holiday decorations on a snowy front porch"> Shadows of holiday decorations on a snowy front porch</option>
     </select>
-<div>
-<div>
-    <label for="options8">Choose a Perspective:</label>
-    <select name="q2" id="options8" onchange="addLF(this)">
-        <option value="">if needed, or select this option (or leave as is) if this setting is not needed</option>
+</div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend><span class="step">03</span> Add the finishing touches</legend>
+        <p class="section-description">Find your angle and bring the whole picture together.</p>
+        <div class="fields">
+<div class="field">
+    <label for="options8">Perspective</label>
+    <select id="options8">
+        <option value="">Choose a point of view</option>
         <option value="Perspective: Bird's-Eye View">Bird's-Eye View</option>
         <option value="Perspective: Worm's-Eye View">Worm's-Eye View</option>
         <option value="Perspective: Head-On View">Head-On View</option>
@@ -439,11 +651,11 @@
         <option value="Perspective: Over-the-Shoulder View">Over-the-Shoulder View</option>
         <option value="Perspective: Reflection View">Reflection View</option>
     </select>
-<div>
-<div>
-    <label for="options9">Choose Imagery and Symbols:</label>
-    <select name="q2" id="options9" onchange="addLF(this)">
-        <option value="">if needed, or select this option (or leave as is) if this setting is not needed</option>
+</div>
+<div class="field">
+    <label for="options9">Imagery &amp; symbols</label>
+    <select id="options9">
+        <option value="">Add a meaningful detail</option>
         <option value="Imagery and Symbols: Christmas tree">Christmas tree</option>
         <option value="Imagery and Symbols:  Snowman"> Snowman</option>
         <option value="Imagery and Symbols:  Santa Claus"> Santa Claus</option>
@@ -495,11 +707,11 @@
         <option value="Imagery and Symbols:  New Year's Eve fireworks"> New Year's Eve fireworks</option>
         <option value="Imagery and Symbols:  Champagne glasses"> Champagne glasses</option>
     </select>
-<div>
-<div>
-    <label for="options10">Choose a Composition:</label>
-    <select name="q2" id="options10" onchange="addLF(this)">
-        <option value="">if needed, or select this option (or leave as is) if this setting is not needed</option>
+</div>
+<div class="field">
+    <label for="options10">Composition</label>
+    <select id="options10">
+        <option value="">Arrange your scene</option>
         <option value="Composition: A snowy landscape with a cozy cabin in the background">A snowy landscape with a cozy cabin in the background</option>
         <option value="Composition:  A Christmas tree decorated with colorful ornaments and twinkling lights"> A Christmas tree decorated with colorful ornaments and twinkling lights</option>
         <option value="Composition:  A group of carolers singing in front of a decorated house"> A group of carolers singing in front of a decorated house</option>
@@ -521,11 +733,11 @@
         <option value="Composition:  A winter scene with a horse-drawn carriage"> A winter scene with a horse-drawn carriage</option>
         <option value="Composition:  A family taking a sleigh ride through the snow"> A family taking a sleigh ride through the snow</option>
     </select>
-<div>
-<div>
-    <label for="options11">Choose a Format:</label>
-    <select name="q2" id="options11" onchange="addLF(this)">
-        <option value="">if needed, or select this option (or leave as is) if this setting is not needed</option>
+</div>
+<div class="field">
+    <label for="options11">Format</label>
+    <select id="options11">
+        <option value="">Choose the final format</option>
         <option value="Format:  A traditional folded card with a holiday scene on the front "> A traditional folded card with a holiday scene on the front </option>
         <option value="Format:  A postcard with a festive design and a holiday message on the back "> A postcard with a festive design and a holiday message on the back </option>
         <option value="Format:  A tri-fold card with multiple holiday scenes and messages "> A tri-fold card with multiple holiday scenes and messages </option>
@@ -577,20 +789,97 @@
         <option value="Format:  A DIY kit card with a holiday design that's a kit for the recipient to create their own card for a creative effect "> A DIY kit card with a holiday design that's a kit for the recipient to create their own card for a creative effect </option>
         <option value="Format:  A virtual card with a holiday design that's sent electronically for a convenient effect"> A virtual card with a holiday design that's sent electronically for a convenient effect</option>
     </select>
-<div>
-
+</div>
+        </div>
+    </fieldset>
+    </div>
+    <aside class="preview" aria-labelledby="preview-title">
+        <div class="preview-body">
+            <p class="eyebrow">From inspiration to imagination</p>
+            <div class="preview-heading">
+                <h2 id="preview-title">Your prompt</h2>
+                <span class="count" id="selection-count" role="status">0 / 12 details</span>
+            </div>
+            <p class="preview-description">A little of this, a touch of that. Your idea comes together here as you choose.</p>
+            <label class="prompt-label" for="prompt-preview">Live prompt preview</label>
+            <textarea id="prompt-preview" readonly placeholder="Your next holiday creation starts with a single detail. Choose an option to see your prompt take shape."></textarea>
+            <div class="preview-actions">
+                <button class="button button-primary" type="submit">Open in Bing <span aria-hidden="true">&nearr;</span></button>
+                <button class="button button-secondary" id="copy-prompt" type="button" disabled>Copy prompt</button>
+            </div>
+            <p class="handoff-note">Opens Bing search in a new tab with your prompt.<br>Images are not generated on this page.</p>
+            <p class="status" id="feedback" role="status"></p>
+        </div>
+        <div class="tip">
+            <strong>A little creative nudge</strong>
+            <p>Try a holiday, a subject, and an artistic style first. Sometimes a few thoughtful details are all you need.</p>
+        </div>
+    </aside>
+    </form>
+</main>
+<footer class="site-footer">
+    <div class="shell footer-inner">
+        <p>Holiday Studio &middot; Your imagination, thoughtfully prompted.</p>
+        <p class="footer-tagline">Made for a season of possibility.</p>
+    </div>
+</footer>
 <script>
-function addLF(selectObj) {
-    var selectedOption = selectObj.options[selectObj.selectedIndex];
-    if (selectedOption.value.length >= 1) {
-        selectedOption.value = "\n" + selectedOption.value;
+    const form = document.getElementById('prompt-form');
+    const selects = Array.from(form.querySelectorAll('select'));
+    const preview = document.getElementById('prompt-preview');
+    const query = document.getElementById('query');
+    const copyButton = document.getElementById('copy-prompt');
+    const feedback = document.getElementById('feedback');
+
+    function updatePrompt() {
+        const details = selects.map(select => select.value.trim()).filter(Boolean);
+        const prompt = details.length
+            ? 'Create an image using the following instructions:\n' + details.join('\n')
+            : '';
+
+        preview.value = prompt;
+        query.value = prompt;
+        copyButton.disabled = !prompt;
+        document.getElementById('selection-count').textContent = `${details.length} / ${selects.length} details`;
+        selects.forEach(select => select.classList.toggle('has-value', Boolean(select.value)));
+        feedback.textContent = '';
     }
-}
-</script>	
-</br>
-    <input type="submit" value="Bing">
-</form>
+
+    form.addEventListener('change', updatePrompt);
+    form.addEventListener('reset', () => {
+        // The reset event fires before the browser restores the default values.
+        queueMicrotask(() => {
+            updatePrompt();
+            feedback.textContent = 'All details cleared. Ready for a fresh idea.';
+        });
+    });
+    form.addEventListener('submit', event => {
+        updatePrompt();
+        if (!query.value) {
+            event.preventDefault();
+            feedback.textContent = 'Choose at least one detail to create your prompt.';
+            selects[0].focus();
+        }
+    });
+    copyButton.addEventListener('click', async () => {
+        if (!navigator.clipboard) {
+            preview.focus();
+            preview.select();
+            feedback.textContent = 'Clipboard is unavailable. Your prompt is selected; use your device\'s copy command.';
+            return;
+        }
+        try {
+            await navigator.clipboard.writeText(preview.value);
+            feedback.textContent = 'Prompt copied. Take your inspiration anywhere.';
+        } catch (error) {
+            console.error('Unable to copy the prompt:', error);
+            preview.focus();
+            preview.select();
+            feedback.textContent = 'Could not access the clipboard. Your prompt is selected; use your device\'s copy command.';
+        }
+    });
+    updatePrompt();
+</script>
 
 </body>
 </html>
-
