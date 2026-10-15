@@ -222,7 +222,6 @@
     </section>
     <noscript><p>This prompt builder needs JavaScript. Enable it to preview your selections and open your prompt in Bing.</p></noscript>
     <form id="prompt-form" class="workspace" action="https://www.bing.com/search" method="get" target="_blank" rel="noopener noreferrer">
-    <input type="hidden" name="q" id="query">
     <div class="builder" id="builder" tabindex="-1">
         <div class="section-heading builder-intro">
             <div><h2>Your creative direction</h2><p>Start anywhere. Every detail is optional.</p></div>
@@ -801,8 +800,8 @@
                 <span class="count" id="selection-count" role="status">0 / 12 details</span>
             </div>
             <p class="preview-description">A little of this, a touch of that. Your idea comes together here as you choose.</p>
-            <label class="prompt-label" for="prompt-preview">Live prompt preview</label>
-            <textarea id="prompt-preview" readonly placeholder="Your next holiday creation starts with a single detail. Choose an option to see your prompt take shape."></textarea>
+            <label class="prompt-label" for="prompt-preview">Review and edit your prompt</label>
+            <textarea id="prompt-preview" name="q" placeholder="Your next holiday creation starts with a single detail. Choose an option to see your prompt take shape."></textarea>
             <div class="preview-actions">
                 <button class="button button-primary" type="submit">Open in Bing <span aria-hidden="true">&nearr;</span></button>
                 <button class="button button-secondary" id="copy-prompt" type="button" disabled>Copy prompt</button>
@@ -827,7 +826,6 @@
     const form = document.getElementById('prompt-form');
     const selects = Array.from(form.querySelectorAll('select'));
     const preview = document.getElementById('prompt-preview');
-    const query = document.getElementById('query');
     const copyButton = document.getElementById('copy-prompt');
     const feedback = document.getElementById('feedback');
 
@@ -838,14 +836,21 @@
             : '';
 
         preview.value = prompt;
-        query.value = prompt;
         copyButton.disabled = !prompt;
         document.getElementById('selection-count').textContent = `${details.length} / ${selects.length} details`;
         selects.forEach(select => select.classList.toggle('has-value', Boolean(select.value)));
         feedback.textContent = '';
     }
 
-    form.addEventListener('change', updatePrompt);
+    form.addEventListener('change', event => {
+        if (event.target instanceof HTMLSelectElement) {
+            updatePrompt();
+        }
+    });
+    preview.addEventListener('input', () => {
+        copyButton.disabled = !preview.value.trim();
+        feedback.textContent = '';
+    });
     form.addEventListener('reset', () => {
         // The reset event fires before the browser restores the default values.
         queueMicrotask(() => {
@@ -854,11 +859,10 @@
         });
     });
     form.addEventListener('submit', event => {
-        updatePrompt();
-        if (!query.value) {
+        if (!preview.value.trim()) {
             event.preventDefault();
             feedback.textContent = 'Choose at least one detail to create your prompt.';
-            selects[0].focus();
+            (selects[0] || preview).focus();
         }
     });
     copyButton.addEventListener('click', async () => {
