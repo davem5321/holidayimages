@@ -2,7 +2,7 @@
 
 A lightweight holiday image prompt builder. Choose creative details, edit the resulting prompt, and open it in Bing search or copy it to use elsewhere.
 
-**This app builds prompts; it does not generate images.** Bing opens in a new tab with the prompt as its search query.
+**This app builds prompts; it does not generate images.** Bing opens in a new tab with the prompt as its search query.  If the image is not automatically start generating, then select the Bing prompt window and press enter to have your image created.
 
 ## Getting started
 
